@@ -23,5 +23,27 @@ public class EmpRepo {
 	
 	public List<EmpModel> getAllEmps() {
 		return empList;
+	} 
+
+	public EmpModel viewEmp(int empno) {
+		
+		for(EmpModel model:empList) {
+			if(model.getEmpno()==empno) {
+				return model;
+			}
+		}
+		return null;
+	}
+
+	public void updateEmp(EmpModel model) {
+		for(EmpModel emp: empList) {
+			if(emp.getEmpno()==model.getEmpno()) {
+				emp.setEname(model.getEname());
+				emp.setSal(model.getSal());
+				emp.setDeptno(model.getDeptno());;
+				emp.setJob(model.getJob());;
+			}
+		}
+		
 	}
 }

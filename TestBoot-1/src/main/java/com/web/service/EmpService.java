@@ -21,4 +21,14 @@ public class EmpService {
 	public List<EmpModel> viewAll() {
 		return repo.getAllEmps();
 	}
+
+	public EmpModel viewEmp(int empno) {
+		return repo.viewEmp(empno);
+		
+	}
+
+	public void updateEmp(EmpModel model) {
+		repo.updateEmp(model);
+		
+	}
 }
