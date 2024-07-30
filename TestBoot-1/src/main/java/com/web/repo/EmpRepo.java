@@ -3,11 +3,13 @@ package com.web.repo;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.web.model.EmpModel;
 
-@Repository
+
 public class EmpRepo {
 	List<EmpModel> empList = new ArrayList<EmpModel>();
 	
@@ -17,8 +19,22 @@ public class EmpRepo {
 		empList.add(new EmpModel(103, "cdef", 30000, 20, "Manager"));
 	}
 	
+	
+	private JdbcTemplate jdbc;
+	
+	
+	public JdbcTemplate getJdbc() {
+		return jdbc;
+	}
+	@Autowired
+	public void setJdbc(JdbcTemplate jdbc) {
+		this.jdbc = jdbc;
+	}
+
 	public void addEmpData(EmpModel empM) {
-		empList.add(empM);
+		String sql = "insert into emp values(?,?,?,?,?)";
+		
+		jdbc.update(sql,empM.getEmpno(),empM.getEname(),empM.getSal(),empM.getDeptno(),empM.getJob());
 	}
 	
 	public List<EmpModel> getAllEmps() {

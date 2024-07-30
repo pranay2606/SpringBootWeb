@@ -2,8 +2,13 @@ package com.web.model;
 
 import org.springframework.stereotype.Component;
 
-@Component
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
 public class EmpModel {
+	@Id
 	private int empno;
 	private String ename;
 	private int sal;

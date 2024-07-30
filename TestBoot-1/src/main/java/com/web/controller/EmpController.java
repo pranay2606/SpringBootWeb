@@ -30,12 +30,12 @@ public class EmpController {
 		return "emp/addemp";
 	}
 	
-	@RequestMapping("viewemp")
-	public String viewAllEmp(Model model) {
-		List<EmpModel> emps =  service.viewAll();
-		model.addAttribute("emps",emps);
-		return "emp/viewall";
-	}
+//	@RequestMapping("viewemp")
+//	public String viewAllEmp(Model model) {
+//		List<EmpModel> emps =  service.viewAll();
+//		model.addAttribute("emps",emps);
+//		return "emp/viewall";
+//	}
 	
 	@RequestMapping("handleForm")
 	public String handleEmpForm(@ModelAttribute("emps") EmpModel emp) {

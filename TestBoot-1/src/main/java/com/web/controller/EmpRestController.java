@@ -1,8 +1,10 @@
 package com.web.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,14 +33,33 @@ public class EmpRestController {
 	}
 	
 	@GetMapping("viewEmp/{no}")
-	public EmpModel viewSelectEmp(@PathVariable("no") int empno){
+	public Optional<EmpModel> viewSelectEmp(@PathVariable("no") int empno){
 		return service.viewEmp(empno);
 		
+	}
+	
+//	@PutMapping("updateEmp")
+//	public void updateEmp(@RequestBody EmpModel model) {
+//		service.updateEmp(model);
+//	}
+	
+	@GetMapping("viewEmpJob/{job}/{deptno}")
+	public List<EmpModel> viewEmpData(@PathVariable String job,@PathVariable int deptno) {
+		return service.getData(job,deptno);
+	}
+	
+	@GetMapping("viewSal/{sal}")
+	public List<EmpModel> viewEmpData(@PathVariable int sal) {
+		return service.getSal(sal);
 	}
 	
 	@PutMapping("updateEmp")
 	public void updateEmp(@RequestBody EmpModel model) {
 		service.updateEmp(model);
+	}
+	@DeleteMapping("deleteEmp/{empno}")
+	public void deleteEmp(@PathVariable int empno) {
+		service.deleteEmp(empno);
 	}
 }
 
